@@ -835,10 +835,6 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.AssemblyInf
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.TagHelpers.input.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.TagHelpers.output.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.RazorCoreGenerate.cache
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Views\Home\Index.cshtml.g.cs
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Views\Home\Privacy.cshtml.g.cs
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Views\_ViewImports.cshtml.g.cs
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Views\_ViewStart.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Index.cshtml.g.cs
@@ -896,3 +892,6 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.Views.pdb
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.csproj.CopyComplete
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.dll
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.pdb
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Privacy.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
