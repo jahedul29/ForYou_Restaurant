@@ -8753,11 +8753,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Brugen Patel\\ForYou\\ForYou\\ForYou.csproj",
+      "projectUniqueName": "D:\\Project\\Brugen_Patel\\ForYou\\ForYou\\ForYou.csproj",
       "projectName": "ForYou",
-      "projectPath": "D:\\Project\\Brugen Patel\\ForYou\\ForYou\\ForYou.csproj",
+      "projectPath": "D:\\Project\\Brugen_Patel\\ForYou\\ForYou\\ForYou.csproj",
       "packagesPath": "C:\\Users\\Personal\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\Brugen Patel\\ForYou\\ForYou\\obj\\",
+      "outputPath": "D:\\Project\\Brugen_Patel\\ForYou\\ForYou\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Personal\\AppData\\Roaming\\NuGet\\NuGet.Config",
