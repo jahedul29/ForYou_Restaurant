@@ -23,5 +23,11 @@ namespace ForYou.Areas.Admin.Controllers
         {
             return View(await _db.Categories.ToListAsync());
         }
+
+        //GET:Admin/Category/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
