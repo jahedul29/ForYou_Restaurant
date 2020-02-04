@@ -903,3 +903,5 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_UpdateAndBackToListButtonPartial.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Delete.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_DeleteAndBackToListButtonPartial.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Details.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_EditAndBackToListButtonPartial.cshtml.g.cs
