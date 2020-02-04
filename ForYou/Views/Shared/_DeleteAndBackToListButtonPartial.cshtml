@@ -1,0 +1,10 @@
+﻿@model int
+
+<div class="row">
+    <div class="col-6">
+        <input type="submit" class="form-control btn btn-primary" value="Delete" asp-action="Delete" asp-route-id="@Model" />
+    </div>
+    <div class="col-6">
+        <a class="btn btn-success form-control" asp-action="Index" asp-controller="Category">Back To List</a>
+    </div>
+</div>

@@ -11,6 +11,7 @@ namespace ForYou.Models
         [Key]
         public int CategoryId { get; set; }
 
+        [Display(Name = "Category Name")]
         [Required] 
         public string CategoryName { get; set; }
     }
