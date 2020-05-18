@@ -6,6 +6,7 @@ using ForYou.Data;
 using ForYou.Models;
 using ForYou.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ForYou.Areas.Admin.Controllers
@@ -71,7 +72,18 @@ namespace ForYou.Areas.Admin.Controllers
                 StatusMessage = StatusMessage
             };
             return View(model);
+        }
 
+        [ActionName("GetSubCategory")]
+        public async Task<IActionResult> GetSubCategory(int id)
+        {
+            List<SubCategory> subCategories = new List<SubCategory>();
+
+            subCategories = await (from subCategory in _db.SubCategories
+                                   where subCategory.CategoryId == id
+                                   select subCategory).ToListAsync();
+
+            return Json( new SelectList(subCategories, nameof(SubCategory.SubCategoryId), nameof(SubCategory.SubCategoryName)));
         }
 
     }
