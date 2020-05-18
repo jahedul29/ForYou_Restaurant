@@ -1,25 +1,25 @@
 ﻿@model ForYou.Models.ViewModel.SubCategoryAndCategoryViewModel
 @using ForYou.Extension
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<h3 class="text-info">Create SubCategory</h3>
+<h3 class="text-info">Delete SubCategory</h3>
 <br />
-
-<partial name="_StatusMessage" model="Model.StatusMessage" />
 
 <div class="border backgroundWhite row">
     <div class="col-8 border-right">
-        <form asp-action="Create">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="SubCategory.CategoryId" />
+            <input type="hidden" asp-for="SubCategory.SubCategoryId" />
             <div class="form-group row">
                 <div class="col-3">
                     <label asp-for="SubCategory.CategoryId"></label>
                 </div>
                 <div class="col-5">
-                    <select id="ddlCategorylist" asp-for="SubCategory.CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.SubCategory.CategoryId)" class="form-control"></select>
+                    <select disabled id="ddlCategorylist" asp-for="SubCategory.CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.SubCategory.CategoryId)" class="form-control"></select>
                 </div>
             </div>
             <div class="form-group row">
@@ -27,13 +27,12 @@
                     <label asp-for="SubCategory.SubCategoryName"></label>
                 </div>
                 <div class="col-5">
-                    <input asp-for="SubCategory.SubCategoryName" class="form-control" />
+                    <input disabled asp-for="SubCategory.SubCategoryName" class="form-control" />
                 </div>
-                <span asp-validation-for="SubCategory.SubCategoryName" class="text-danger"></span>
             </div>
             <div class="form-group row">
                 <div class="col-5 offset-3">
-                    <partial name="_CreateAndBackToListButtonPartial" />
+                    <partial name="_DeleteAndBackToListButtonPartial" model="Model.SubCategory.SubCategoryId" />
                 </div>
             </div>
         </form>
@@ -76,10 +75,6 @@
         }
 
         $(document).ready(function () {
-            updateSubcategoryList();
-        });
-
-        $('#ddlCategorylist').on("change", function () {
             updateSubcategoryList();
         });
 
