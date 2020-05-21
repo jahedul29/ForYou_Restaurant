@@ -83,7 +83,7 @@ namespace ForYou.Areas.Admin.Controllers
                                    where subCategory.CategoryId == id
                                    select subCategory).ToListAsync();
 
-            return Json(new SelectList(subCategories, nameof(SubCategory.SubCategoryId), nameof(SubCategory.SubCategoryName)));
+            return Json(new SelectList(subCategories, "SubCategoryId", "SubCategoryName"));
         }
 
         //GET:Admin/SubCategory/Edit
