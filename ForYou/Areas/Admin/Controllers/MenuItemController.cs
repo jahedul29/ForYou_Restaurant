@@ -181,5 +181,37 @@ namespace ForYou.Areas.Admin.Controllers
             return View(MenuItemVM);
         }
 
+        //GET: Admin/MenuItem/Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            MenuItemVM.MenuItem = await _db.MenuItems.Include(m => m.Category).Include(m => m.SubCategory).SingleOrDefaultAsync(m => m.MenuItemId == id);
+            MenuItemVM.SubCategoryList = await _db.SubCategories.Where(m => m.CategoryId == MenuItemVM.MenuItem.CategoryId).ToListAsync();
+            if (MenuItemVM.MenuItem == null)
+            {
+                return NotFound();
+            }
+            return View(MenuItemVM);
+        }
+
+        //POST: Admin/MenuItem/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            var menuItemFromDb = await _db.MenuItems.FindAsync(id);
+            if (menuItemFromDb == null)
+            {
+                return NotFound();
+            }
+            _db.Remove(menuItemFromDb);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

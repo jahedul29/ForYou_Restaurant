@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200204082054_addSubcategoryToDatabase.cs" />
     <Compile Remove="Data\Migrations\20200204082054_addSubcategoryToDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200523192706_AddCouponToDatabase.cs" />
+    <Compile Remove="Data\Migrations\20200523192706_AddCouponToDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200523193250_AddCouponAndChangeProperty.cs" />
+    <Compile Remove="Data\Migrations\20200523193250_AddCouponAndChangeProperty.Designer.cs" />
   </ItemGroup>
 
 
