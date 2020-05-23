@@ -1,84 +1,89 @@
 ﻿@model ForYou.Models.ViewModel.MenuItemViewModel
 @using ForYou.Extension
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<h3 class="text-info">Create MenuItem</h3>
+<h3 class="text-info">MenuItem Details</h3>
 <br />
 
-
-<form method="post" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="border backgroundWhite">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="MenuItem.MenuItemId" />
+<div class="border backgroundWhite row">
+    <div class="col-8">
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.MenuItemName"></label>
             </div>
-            <div class="col-5">
-                <input asp-for="MenuItem.MenuItemName" class="form-control" />
+            <div class="col-8">
+                <input disabled asp-for="MenuItem.MenuItemName" class="form-control" />
             </div>
             <span asp-validation-for="MenuItem.MenuItemName" class="text-danger"></span>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.Description"></label>
             </div>
-            <div class="col-5">
+            <div class="col-8">
                 @Html.TextAreaFor(m => m.MenuItem.Description)
             </div>
             <span asp-validation-for="MenuItem.Description" class="text-danger"></span>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.Price"></label>
             </div>
-            <div class="col-5">
-                <input asp-for="MenuItem.Price" class="form-control" />
+            <div class="col-8">
+                <input disabled asp-for="MenuItem.Price" class="form-control" />
             </div>
             <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.Image"></label>
             </div>
-            <div class="col-5">
-                <input type="file" name="files" multiple class="form-control" />
+            <div class="col-8">
+                <input disabled type="file" name="files" multiple class="form-control" />
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.CategoryId"></label>
             </div>
-            <div class="col-5">
-                <select asp-for="MenuItem.CategoryId" id="CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.MenuItem.CategoryId)" class="form-control"></select>
+            <div class="col-8">
+                <select disabled asp-for="MenuItem.CategoryId" id="CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.MenuItem.CategoryId)" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.SubCategoryId"></label>
             </div>
-            <div class="col-5">
-                <select asp-for="MenuItem.SubCategoryId" name="SubCategoryId" id="SubCategoryId" asp-items="@(new SelectList(string.Empty, "SubCategoryId", "SubCategoryName"))" class="form-control"></select>
+            <div class="col-8">
+                <select disabled asp-for="MenuItem.SubCategoryId" name="SubCategoryId" id="SubCategoryId" asp-items="@(new SelectList(string.Empty, "SubCategoryId", "SubCategoryName"))" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-2">
+            <div class="col-4">
                 <label asp-for="MenuItem.Spicyness"></label>
             </div>
-            <div class="col-5">
-                <select asp-for="MenuItem.Spicyness" asp-items="Html.GetEnumSelectList<MenuItem.ESpicy>()" class="form-control"></select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-5 offset-2">
-                <partial name="_CreateAndBackToListButtonPartial" />
+            <div class="col-8">
+                <select disabled asp-for="MenuItem.Spicyness" asp-items="Html.GetEnumSelectList<MenuItem.ESpicy>()" class="form-control"></select>
             </div>
         </div>
     </div>
-</form>
+    <div class="col-3 offset-1">
+        <img src="@Model.MenuItem.Image" width="100%" style="border-radius:5px;border: 1px solid black;" />
+    </div>
+
+    <div class="col-8">
+        <div class="col-8 offset-4">
+            <partial name="_EditAndBackToListButtonPartial" model="Model.MenuItem.MenuItemId" />
+        </div>
+    </div>
+
+</div>
 
 @section Scripts{
     <script>
@@ -89,14 +94,23 @@
             toolbar_mode: 'floating',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
+            readonly: 1
         });
 
     </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var items = "<option value='0'>Select</option>";
-            $('#SubCategoryId').html(items);
+            var url = '@Url.Content("~/")' + "Admin/SubCategory/GetSubCategory";
+            var ddlsource = '#CategoryId';
+            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $('#SubCategoryId').empty();
+                $.each(data, function (i, subcategory) {
+                    items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                });
+                $('#SubCategoryId').html(items)
+            });
         });
     </script>
 
