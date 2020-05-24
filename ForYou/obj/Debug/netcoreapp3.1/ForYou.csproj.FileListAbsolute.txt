@@ -917,3 +917,7 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MenuItem\Details.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MenuItem\Delete.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Coupon\Index.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Coupon\Create.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Coupon\Edit.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Coupon\Details.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Coupon\Delete.cshtml.g.cs
