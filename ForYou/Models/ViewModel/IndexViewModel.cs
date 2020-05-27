@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ForYou.Models.ViewModel
+{
+    public class IndexViewModel
+    {
+        public IEnumerable<Category> CategoryList{ get; set; }
+        public IEnumerable<MenuItem> MenuItemList { get; set; }
+        public IEnumerable<Coupon> CouponList { get; set; }
+    }
+}

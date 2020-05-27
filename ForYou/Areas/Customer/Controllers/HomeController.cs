@@ -6,22 +6,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ForYou.Models;
+using ForYou.Data;
+using ForYou.Models.ViewModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForYou.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IndexViewModel indexVM = new IndexViewModel
+            {
+                MenuItemList = await _db.MenuItems.Include(m=>m.Category).Include(m=>m.SubCategory).ToListAsync(),
+                CategoryList = await _db.Categories.ToListAsync(),
+                CouponList = await _db.Coupons.Where(m=>m.IsActive ==true).ToListAsync()
+            };
+            return View(indexVM);
         }
 
         public IActionResult Privacy()
