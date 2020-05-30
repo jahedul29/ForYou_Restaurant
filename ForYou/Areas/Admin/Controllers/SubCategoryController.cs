@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using ForYou.Data;
 using ForYou.Models;
 using ForYou.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ForYou.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Manager")]          ///I use magic string instead of using SD class
+
     [Area(nameof(Admin))]
     public class SubCategoryController : Controller
     {
