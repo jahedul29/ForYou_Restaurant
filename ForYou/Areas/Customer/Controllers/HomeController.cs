@@ -9,6 +9,7 @@ using ForYou.Models;
 using ForYou.Data;
 using ForYou.Models.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ForYou.Controllers
 {
@@ -31,6 +32,28 @@ namespace ForYou.Controllers
                 CouponList = await _db.Coupons.Where(m=>m.IsActive ==true).ToListAsync()
             };
             return View(indexVM);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var menuItemFromDb = await _db.MenuItems.Include(u => u.Category).Include(u => u.SubCategory).FirstOrDefaultAsync(u => u.MenuItemId == id);
+            if (menuItemFromDb == null)
+            {
+                return NotFound();
+            }
+
+            ShoppingCart cartObj = new ShoppingCart {
+                MenuItem = menuItemFromDb,
+                MenuItemId = menuItemFromDb.MenuItemId
+            };
+
+            return View(cartObj);
         }
 
         public IActionResult Privacy()

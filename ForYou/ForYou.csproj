@@ -12,6 +12,8 @@
     <Compile Remove="Data\Migrations\20200523192706_AddCouponToDatabase.Designer.cs" />
     <Compile Remove="Data\Migrations\20200523193250_AddCouponAndChangeProperty.cs" />
     <Compile Remove="Data\Migrations\20200523193250_AddCouponAndChangeProperty.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530061743_AddShoppingCartToDatabase.cs" />
+    <Compile Remove="Data\Migrations\20200530061743_AddShoppingCartToDatabase.Designer.cs" />
   </ItemGroup>
 
 
