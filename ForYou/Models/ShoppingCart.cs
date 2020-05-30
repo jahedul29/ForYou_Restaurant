@@ -17,7 +17,7 @@ namespace ForYou.Models
         public int Id { get; set; }
        
         [Display(Name ="Application User")]
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         [NotMapped]
         [ForeignKey("ApplicationUserId")]
