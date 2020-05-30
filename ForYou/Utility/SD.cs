@@ -7,11 +7,13 @@ namespace ForYou.Utility
 {
     public class SD
     {
-        public static string DefaultFood = "constImage.jpg";
+        public const string DefaultFood = "constImage.jpg";
 
-        public static string ManagerUser = "Manager";
-        public static string KitcheUser = "Kitchen";
-        public static string FrontDestUser = "FrontDesk";
-        public static string CustomerEndUser = "Customer";
+        public const string ManagerUser = "Manager";
+        public const string KitcheUser = "Kitchen";
+        public const string FrontDestUser = "FrontDesk";
+        public const string CustomerEndUser = "Customer";
+
+        public const string ssShoppingCartCount = "ssCartCount";
     }
 }

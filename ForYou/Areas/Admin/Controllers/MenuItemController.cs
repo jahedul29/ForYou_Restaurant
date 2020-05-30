@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForYou.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Manager")]          ///I use magic string instead of using SD class
+    [Authorize(Roles = SD.ManagerUser)]        
 
     [Area("Admin")]
     public class MenuItemController : Controller

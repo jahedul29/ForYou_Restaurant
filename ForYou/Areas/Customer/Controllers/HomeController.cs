@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using ForYou.Utility;
 
 namespace ForYou.Controllers
 {
@@ -33,6 +34,15 @@ namespace ForYou.Controllers
                 CategoryList = await _db.Categories.ToListAsync(),
                 CouponList = await _db.Coupons.Where(m=>m.IsActive ==true).ToListAsync()
             };
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (claim!=null)
+            {
+                int count = _db.ShoppingCart.Where(m => m.ApplicationUserId == claim.Value).ToList().Count;
+                HttpContext.Session.SetInt32(SD.ssShoppingCartCount, count);
+            }
+
             return View(indexVM);
         }
 
@@ -86,7 +96,7 @@ namespace ForYou.Controllers
                 await _db.SaveChangesAsync();
 
                 var count = _db.ShoppingCart.Where(u => u.ApplicationUserId == cartObj.ApplicationUserId).ToList().Count;
-                HttpContext.Session.SetInt32("ssCartCount", count);
+                HttpContext.Session.SetInt32(SD.ssShoppingCartCount, count);
 
                 return RedirectToAction(nameof(Index));
             }
