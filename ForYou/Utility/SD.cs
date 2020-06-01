@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ForYou.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace ForYou.Utility
         public const string CustomerEndUser = "Customer";
 
         public const string ssShoppingCartCount = "ssCartCount";
+        public const string ssCouponCode = "ssCouponCode";
 
 
         public static string ConvertToRawHtml(string source)
@@ -43,6 +45,33 @@ namespace ForYou.Utility
                 }
             }
             return new string(array, 0, arrayIndex);
+        }
+
+        public static double DiscountedPrice(Coupon coupon, double OriginalOrderTotal)
+        {
+            if (coupon == null)
+            {
+                return OriginalOrderTotal;
+            }
+            else
+            {
+                if (coupon.MinimumAmount > OriginalOrderTotal)
+                {
+                    return OriginalOrderTotal;
+                }
+                else if(Convert.ToInt32(coupon.CouponType) == (int)Coupon.ECouponType.Dollar)
+                {
+                    return Math.Round(OriginalOrderTotal - coupon.Discount, 2);
+                }
+                else
+                {
+                    if (Convert.ToInt32(coupon.CouponType) == (int)Coupon.ECouponType.Percent)
+                    {
+                        return Math.Round(OriginalOrderTotal - OriginalOrderTotal*coupon.Discount/100, 2);
+                    }
+                }
+            }
+            return OriginalOrderTotal;
         }
     }
 }

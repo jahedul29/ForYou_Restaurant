@@ -106,3 +106,19 @@
 
     </form>
 
+@section Scripts{ 
+<script>
+    $(function () {
+        var couponCode = document.getElementById("txtCouponCode").value;
+
+        if (couponCode.length > 0) {
+            document.getElementById("btnAddCoupon").style.display = 'none';
+            document.getElementById("btnRemoveCoupon").style.display = '';
+        }
+        else {
+            document.getElementById("btnAddCoupon").style.display = '';
+            document.getElementById("btnRemoveCoupon").style.display = 'none';
+        }
+    });
+</script>
+}
