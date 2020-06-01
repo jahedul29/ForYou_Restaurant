@@ -51,7 +51,7 @@
                         @if (count != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-white"><i class="fas fa-shopping-cart"></i>&nbsp; @count</a>
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white"><i class="fas fa-shopping-cart"></i>&nbsp; (@count)</a>
                             </li>
                         }
                         else

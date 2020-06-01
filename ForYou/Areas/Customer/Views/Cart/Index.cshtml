@@ -1,0 +1,108 @@
+﻿@model ForYou.Models.ViewModel.OrderDetailsCartViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form method="post">
+
+        @if (Model.ShoppingCartList.Count > 0)
+        {
+            <br />
+            <input type="hidden" id="userId" asp-for="@Model.ShoppingCartList[0].ApplicationUserId" />
+
+            <div class="backgroundWhiteBorder">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header bg-dark text-light ml-0 row container">
+                            <div class="col-6">
+                                <i class="fas fa-shopping-cart"></i> &nbsp;Shopping Cart
+                            </div>
+                            <div class="col-6 text-right">
+                                <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-success btn-sm">Continue Shopping</a>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            @foreach (var item in Model.ShoppingCartList)
+                            {
+                                <div class="row">
+                                    <div class="d-none d-lg-block col-lg-2 text-center">
+                                        <img src="@item.MenuItem.Image" class="rounded px-2" width="120px" height="70px" />
+                                    </div>
+
+                                    <div class="col-12 col-lg-5 text-sm-center text-lg-left">
+                                        <h4><strong>@item.MenuItem.MenuItemName</strong></h4>
+                                        <h4><small>@item.MenuItem.Description</small></h4>
+                                    </div>
+
+                                    <div class="col-12 col-lg-5 text-sm-center text-lg-right row">
+                                        <div class="col-4 text-md-right" style="padding-top:5px;">
+                                            <h6><strong>@item.MenuItem.Price<span class="text-muted"> * </span>@item.Count</strong></h6>
+                                        </div>
+                                        <div class="col-6 col-lg-6 col-sm-4">
+                                            <div class="float-right mx-1">
+                                                <button type="submit" class="btn btn-primary" asp-action="Plus" asp-route-cartId="@item.Id">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="float-right mx-1">
+                                                <button type="submit" class="btn btn-danger" asp-action="Minus" asp-route-cartId="@item.Id">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-lg-2 col-sm-4 text-right">
+                                            <button type="submit" class="btn btn-outline-danger" asp-action="Remove" asp-route-cartId="@item.Id">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+
+                            <div class="row">
+                                <div class="col-12 col-lg-5">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <input asp-for="@Model.OrderHeader.CouponCode" placeholder="coupon code..." id="txtCouponCode" class="form-control" />
+                                        </div>
+                                        <div class="col-5">
+                                            <button type="submit" id="btnAddCoupon" asp-action="AddCoupon" class="btn btn-outline-success form-control" >
+                                                Apply
+                                            </button>
+                                            <button type="submit" id="btnRemoveCoupon" asp-action="RemoveCoupon" class="btn btn-outline-danger form-control" style="display:none;">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 offset-lg-3 col-md-6 offset-md-1">
+                                    <ul class="list-group">
+                                        <li class="bg-light d-flex justify-content-between list-group-item" >
+                                            <span class="text-info">Total (BDT)&nbsp;&nbsp;  </span>
+                                            <strong class="text-info">  <span id="txtOrderTotal">@Model.OrderHeader.OrderTotal</span> BDT</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Summery" class="btn btn-success form-control">Summery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="backgroundWhiteBorder">No items added to shopping cart...</div>
+        }
+
+    </form>
+
