@@ -826,8 +826,6 @@ D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\runtimes\win\lib\n
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.csprojAssemblyReference.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\staticwebassets\ForYou.StaticWebAssets.Manifest.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\staticwebassets\ForYou.StaticWebAssets.xml
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cs
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.RazorAssemblyInfo.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.RazorAssemblyInfo.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.AssemblyInfoInputs.cache
@@ -925,3 +923,7 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Index.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Summery.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\Stripe.net.dll
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cache

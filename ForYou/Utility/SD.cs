@@ -18,6 +18,18 @@ namespace ForYou.Utility
         public const string ssShoppingCartCount = "ssCartCount";
         public const string ssCouponCode = "ssCouponCode";
 
+        public const string StatusSubmitted = "Submitted";
+        public const string StatusInProcess = "Being Prepared";
+        public const string StatusReady = "Ready To Pickup";
+        public const string StatusCompleted = "Completed";
+        public const string StatusCencelled = "Cencelled";
+
+        public const string StatusPending = "Pending";
+        public const string StatusApproved = "Approved";
+        public const string StatusRejected = "Rejected";
+
+
+
 
         public static string ConvertToRawHtml(string source)
         {
