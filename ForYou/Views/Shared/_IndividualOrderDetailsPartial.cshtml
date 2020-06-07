@@ -1,0 +1,115 @@
+﻿@model ForYou.Models.ViewModel.OrderHeaderAndOrderDetailsViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<br />
+<form method="post">
+    <div class="container row backgroundWhiteBorder10Padding border ml-1">
+        <div class="col-12 col-lg-8 border-right">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="">Name</label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.PickUpName" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="" asp-for="OrderHeader.ApplicationUser.Email"></label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.ApplicationUser.Email" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="" asp-for="OrderHeader.PhoneNumber"></label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.PhoneNumber" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="" asp-for="OrderHeader.OrderTotal"></label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.OrderTotal" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="">Pick Up Time</label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.PickUpTime" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="" asp-for="OrderHeader.Comments"></label>
+                </div>
+                <div class="col-8 text-right">
+                    <input class="form-control" asp-for="OrderHeader.Comments" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <h4 class="d-flex justify-content-between align-content-center">
+                <span class="text-muted">Order ID:</span>
+                <span class="badge badge-secondary badge-pill">@Model.OrderHeader.OrderHeaderId</span>
+            </h4>
+
+            <ul class="list-group">
+                @{
+                    var total = 0.0;
+                }
+                @foreach (var details in Model.OrderDetailsList)
+                {
+                    <li class="d-flex justify-content-between list-group-item">
+                        <div>
+                            <h6 class="mb-0">
+                                @details.ItemName
+                            </h6>
+                            <span class="text-muted">Quantity: @details.Count</span>
+                        </div>
+                        <strong>@(details.Price * details.Count)&nbsp;BDT</strong>
+                        @{ total += (details.Price * details.Count);}
+                    </li>
+                }
+
+
+
+                @if (Model.OrderHeader.CouponCode != null)
+                {
+                    <li class="d-flex justify-content-between list-group-item">
+                        <div class="text-success">
+                            <h6 class="mb-0">
+                                Promo CODE
+                            </h6>
+                            <span class="text-success">@Model.OrderHeader.CouponCode</span>
+                        </div>
+                        <strong class="text-success">@Model.OrderHeader.CouponCodeDiscount&nbsp;BDT</strong>
+                    </li>
+                }
+                <li class="d-flex justify-content-between list-group-item bg-light">
+                    <div>
+                        <h6 class="text-info mb-0">
+                            Total
+                        </h6>
+                    </div>
+                    <strong class="text-info">@Model.OrderHeader.OrderTotal&nbsp;BDT</strong>
+                </li>
+
+                <button type="submit" disabled class="btn btn-success form-control" style="color:black;background-color:aquamarine" value="Submitted">Submitted</button>
+            </ul>
+        </div>
+    </div>
+</form>

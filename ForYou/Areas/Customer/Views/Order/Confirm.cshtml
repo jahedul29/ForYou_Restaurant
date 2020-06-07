@@ -1,0 +1,31 @@
+﻿@model ForYou.Models.ViewModel.OrderHeaderAndOrderDetailsViewModel
+@{
+    ViewData["Title"] = "Confirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="backgroundWhite">
+    <div class="row pb-0">
+        <div class="col-8">
+            <h2 class="text-info">Order Confirmed</h2>
+        </div>
+        <div class="col-4 text-right">
+            <a class="btn btn-success form-control" asp-action="Index" asp-controller="Home">New Order</a>
+        </div>
+    </div>
+
+    @if (Model.OrderHeader != null)
+    {
+        <div style="color:maroon" ng- class="p-2">
+            Your order has been confirmed.
+            <br />
+            THANK YOU
+        </div>
+        <partial name="_IndividualOrderDetailsPartial" model="Model" />
+    }
+    else
+    {
+        <p class="text-danger">Error: Please try again later.............</p>
+    }
+</div>
