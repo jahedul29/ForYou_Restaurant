@@ -108,8 +108,9 @@
                     <strong class="text-info">@Model.OrderHeader.OrderTotal&nbsp;BDT</strong>
                 </li>
 
-                <button type="submit" disabled class="btn btn-success form-control" style="color:black;background-color:aquamarine" value="Submitted">Submitted</button>
             </ul>
+            <button type="submit" disabled class="btn btn-success form-control" style="color:black;background-color:aquamarine">@Model.OrderHeader.Status</button>
+
         </div>
     </div>
 </form>

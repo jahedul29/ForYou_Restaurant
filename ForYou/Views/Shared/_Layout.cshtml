@@ -47,6 +47,13 @@
                             </li>
                         }
 
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.CustomerEndUser))
+                        {
+                            <li class="nav-item">
+                                <a asp-area="Customer" asp-controller="Order" asp-action="OrderHistory" class="text-white btn"> Order History</a>
+                            </li>
+                        }
+
                         @{
                             var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ssShoppingCartCount);
                         }

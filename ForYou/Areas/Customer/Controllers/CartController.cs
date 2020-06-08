@@ -7,6 +7,7 @@ using ForYou.Data;
 using ForYou.Models;
 using ForYou.Models.ViewModel;
 using ForYou.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace ForYou.Areas.Customer.Controllers
             _db = db;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             DetailsCartVM = new OrderDetailsCartViewModel()
@@ -127,6 +129,7 @@ namespace ForYou.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         public async Task<IActionResult> Summery()
         {
             DetailsCartVM = new OrderDetailsCartViewModel()
@@ -206,7 +209,7 @@ namespace ForYou.Areas.Customer.Controllers
                 DetailsCartVM.OrderHeader.OrderTotalOriginal += item.Count * item.MenuItem.Price;
                 _db.OrderDetails.Add(orderDetails);
             }
-  
+
             if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
             {
                 DetailsCartVM.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
@@ -227,7 +230,7 @@ namespace ForYou.Areas.Customer.Controllers
             {
                 Amount = Convert.ToInt32((DetailsCartVM.OrderHeader.OrderTotal / 80) * 100),
                 Currency = "usd",
-                Description = "Order Id : "+DetailsCartVM.OrderHeader.OrderHeaderId,
+                Description = "Order Id : " + DetailsCartVM.OrderHeader.OrderHeaderId,
                 Source = stripeToken
             };
 
@@ -243,7 +246,7 @@ namespace ForYou.Areas.Customer.Controllers
             {
                 DetailsCartVM.OrderHeader.TransactionId = charge.BalanceTransactionId;
             }
-            if (charge.Status.ToLower()=="succeeded")
+            if (charge.Status.ToLower() == "succeeded")
             {
                 DetailsCartVM.OrderHeader.PaymentStatus = SD.StatusApproved;
                 DetailsCartVM.OrderHeader.Status = SD.StatusSubmitted;
@@ -259,4 +262,5 @@ namespace ForYou.Areas.Customer.Controllers
         }
 
     }
+
 }
