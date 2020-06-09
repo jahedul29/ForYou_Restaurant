@@ -17,6 +17,8 @@ namespace ForYou.Areas.Customer.Controllers
     {
         private ApplicationDbContext _db;
 
+        private int PageSize = 2;
+
         public OrderController(ApplicationDbContext db)
         {
             _db = db;
@@ -43,12 +45,15 @@ namespace ForYou.Areas.Customer.Controllers
 
 
         [Authorize]
-        public async Task<IActionResult> OrderHistory()
+        public async Task<IActionResult> OrderHistory(int productPage=1)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            List<OrderHeaderAndOrderDetailsViewModel> OrderHeaderAndOrderDetailsList = new List<OrderHeaderAndOrderDetailsViewModel>();
+            OrderHeaderAndOrderDetailsListViewModel OrderAndPaging = new OrderHeaderAndOrderDetailsListViewModel()
+            {
+                OrderList = new List<OrderHeaderAndOrderDetailsViewModel>()
+            };
 
             List<OrderHeader> OrderHeaderList = await _db.OrderHeaders.Include(u => u.ApplicationUser).Where(u => u.ApplicationUserId == claim).ToListAsync();
 
@@ -59,9 +64,24 @@ namespace ForYou.Areas.Customer.Controllers
                     OrderHeader = orderHeader,
                     OrderDetailsList = await _db.OrderDetails.Where(u => u.OrderId == orderHeader.OrderHeaderId).ToListAsync()
                 };
-                OrderHeaderAndOrderDetailsList.Add(invidualOrder);
+                OrderAndPaging.OrderList.Add(invidualOrder);
             }
-            return View(OrderHeaderAndOrderDetailsList);
+
+            var count = OrderAndPaging.OrderList.Count;
+
+            OrderAndPaging.OrderList = OrderAndPaging.OrderList.OrderByDescending(p => p.OrderHeader.OrderHeaderId)
+                .Skip((productPage - 1) * PageSize).Take(PageSize)
+                .ToList();
+
+            OrderAndPaging.PagingInfo = new PagingInfo()
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItems = count,
+                UrlParam = "/Customer/Order/OrderHistory?productPage=:"
+            };
+
+            return View(OrderAndPaging);
         }
 
         public async Task<IActionResult> GetOrderDetails(int Id)
