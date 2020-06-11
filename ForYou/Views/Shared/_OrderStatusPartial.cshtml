@@ -1,0 +1,23 @@
+﻿@model OrderHeader
+@using ForYou.Utility
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <div style="width: 40%">
+        @if (Model.Status == SD.StatusSubmitted)
+        {
+            <img src=@("~/images/"+SD.OrderPlacedImage) width="100%">
+        }
+        else if (Model.Status == SD.StatusInProcess)
+        {
+            <img src=@("~/images/"+SD.OrderInProcessImage) width="100%">
+        }
+        else if (Model.Status == SD.StatusReady)
+        {
+            <img src=@("~/images/"+SD.OrderReadyImage) width="100%">
+        }
+        else if (Model.Status == SD.StatusCompleted)
+        {
+            <img src=@("~/images/"+SD.OrderCompletedImage) width="100%">
+        }
+    </div>

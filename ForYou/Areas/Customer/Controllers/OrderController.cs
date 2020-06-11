@@ -94,5 +94,12 @@ namespace ForYou.Areas.Customer.Controllers
 
             return PartialView("_IndividualOrderDetailsPartial", orderDetailsVM);
         }
+
+        public async Task<IActionResult> GetOrderStatus(int id)
+        {
+            OrderHeader orderHeader = await _db.OrderHeaders.FirstOrDefaultAsync(u => u.OrderHeaderId == id);
+
+            return PartialView("_OrderStatusPartial", orderHeader);
+        }
     }
 }

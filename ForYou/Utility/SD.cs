@@ -10,19 +10,28 @@ namespace ForYou.Utility
     {
         public const string DefaultFood = "constImage.jpg";
 
+        //Static files for roles
         public const string ManagerUser = "Manager";
         public const string KitcheUser = "Kitchen";
         public const string FrontDestUser = "FrontDesk";
         public const string CustomerEndUser = "Customer";
 
+        //Static files for Session
         public const string ssShoppingCartCount = "ssCartCount";
         public const string ssCouponCode = "ssCouponCode";
 
+        //Static files for status
         public const string StatusSubmitted = "Submitted";
         public const string StatusInProcess = "Being Prepared";
         public const string StatusReady = "Ready To Pickup";
         public const string StatusCompleted = "Completed";
         public const string StatusCencelled = "Cencelled";
+
+        //Static images for OrderStatus
+        public const string OrderPlacedImage = "OrderPlaced.png";
+        public const string OrderInProcessImage = "InKitchen.png";
+        public const string OrderReadyImage = "ReadyForPickup.png";
+        public const string OrderCompletedImage = "completed.png";
 
         public const string StatusPending = "Pending";
         public const string StatusApproved = "Approved";
