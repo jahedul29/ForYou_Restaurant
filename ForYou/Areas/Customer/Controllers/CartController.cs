@@ -162,6 +162,7 @@ namespace ForYou.Areas.Customer.Controllers
             DetailsCartVM.OrderHeader.PickUpName = user.Name;
             DetailsCartVM.OrderHeader.PhoneNumber = user.PhoneNumber;
             DetailsCartVM.OrderHeader.PickUpTime = DateTime.Now;
+            DetailsCartVM.OrderHeader.PickUpDate = DateTime.Now;
 
             if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
             {
@@ -179,7 +180,7 @@ namespace ForYou.Areas.Customer.Controllers
         {
             //Saving OrderHeader To database
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             DetailsCartVM.ShoppingCartList = await _db.ShoppingCart.Where(u => u.ApplicationUserId == claim).ToListAsync();
 

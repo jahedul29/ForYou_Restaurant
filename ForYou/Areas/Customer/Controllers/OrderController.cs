@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ForYou.Data;
 using ForYou.Models;
 using ForYou.Models.ViewModel;
+using ForYou.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -101,5 +102,60 @@ namespace ForYou.Areas.Customer.Controllers
 
             return PartialView("_OrderStatusPartial", orderHeader);
         }
+
+        [Authorize(Roles = SD.ManagerUser+","+SD.KitcheUser)]
+        public async Task<IActionResult> ManageOrder()
+        {
+            List<OrderHeaderAndOrderDetailsViewModel> orderDetailsVM = new List<OrderHeaderAndOrderDetailsViewModel>();
+
+            List<OrderHeader> OrderHeaderList = await _db.OrderHeaders
+                .Where(o=>o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess)
+                .OrderByDescending(o=>o.PickUpTime).ToListAsync();
+
+            foreach (var orderHeader in OrderHeaderList)
+            {
+                OrderHeaderAndOrderDetailsViewModel invidualOrder = new OrderHeaderAndOrderDetailsViewModel()
+                {
+                    OrderHeader = orderHeader,
+                    OrderDetailsList = await _db.OrderDetails.Where(u => u.OrderId == orderHeader.OrderHeaderId).ToListAsync()
+                };
+                orderDetailsVM.Add(invidualOrder);
+            }
+
+            return View(orderDetailsVM.OrderBy(o=>o.OrderHeader.PickUpTime));
+        }
+
+        [Authorize(Roles = SD.ManagerUser + "," + SD.KitcheUser)]
+        public async Task<IActionResult> OrderPrepare(int orderId)
+        {
+            OrderHeader orderHeader = await _db.OrderHeaders.FindAsync(orderId);
+            orderHeader.Status = SD.StatusInProcess;
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ManageOrder));
+        }
+
+        [Authorize(Roles = SD.ManagerUser + "," + SD.KitcheUser)]
+        public async Task<IActionResult> OrderReady(int orderId)
+        {
+            OrderHeader orderHeader = await _db.OrderHeaders.FindAsync(orderId);
+            orderHeader.Status = SD.StatusCompleted;
+            await _db.SaveChangesAsync();
+
+            //Email notiication for order Pickup
+
+            return RedirectToAction(nameof(ManageOrder));
+        }
+
+        [Authorize(Roles = SD.ManagerUser + "," + SD.KitcheUser)]
+        public async Task<IActionResult> OrderCancel(int orderId)
+        {
+            OrderHeader orderHeader = await _db.OrderHeaders.FindAsync(orderId);
+            orderHeader.Status = SD.StatusCencelled;
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ManageOrder));
+        }
+
     }
 }

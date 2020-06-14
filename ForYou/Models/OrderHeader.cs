@@ -34,8 +34,9 @@ namespace ForYou.Models
         [Display(Name ="PickUp Time")]
         public DateTime PickUpTime { get; set; }
         
-        [NotMapped]
+        
         [Required]
+        [NotMapped]
         public DateTime PickUpDate { get; set; }
 
         [Display(Name ="Coupon Code")]

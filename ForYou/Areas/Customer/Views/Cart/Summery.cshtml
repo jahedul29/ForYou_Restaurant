@@ -129,7 +129,7 @@
                             <script>
                                 document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                             </script>
-                            <button class="btn btn-success form-control" type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order">Place Order</button>
+                            <button class="btn btn-success form-control" onclick="return validateInput();" type="submit" id="btnPlaceOrder" value="">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -149,16 +149,14 @@
 
     <script>
         $(function () {
-            var minDate = 0;
+            var minDt = 0;
 
-            if (getTimeFromCurrentDate() > 21) {
-                minDate = 1;
+            if (getTimeFromCurrentDate() >= "17.00") {
+                minDt = 1;
             }
 
-
-            $('#datePicker').datepicker({ minDate: minDate, maxDate: "+1W" });
+            $('#datePicker').datepicker({ minDate: minDt, maxDate: "1W+", dateFormat: "dd-mm-yy" });
             $('#timePicker').timepicker({
-                timeFormat: 'h:mm p',
                 interval: 30,
                 minTime: '10:00am',
                 maxTime: '8:00pm',
@@ -168,12 +166,13 @@
 
         function setPickUpTime() {
             var dateSelected = document.getElementById("datePicker").value;
-            var dt = new Date(dateSelected);
+            var dt = dateSelected.substring(0,2);
             var today = new Date();
 
+            alert(dt + ", " + today.getDate());
             dt.setHours(0, 0, 0, 0);
 
-            if (dt > today) {
+            if (dt > today.getDate()) {
                 selectedTime = '10:00am';
             }
             else {
