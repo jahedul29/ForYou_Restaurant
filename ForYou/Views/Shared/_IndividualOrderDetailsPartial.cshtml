@@ -1,9 +1,10 @@
 ﻿@model ForYou.Models.ViewModel.OrderHeaderAndOrderDetailsViewModel
+@using ForYou.Utility
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <br />
-<form method="post">
+<form method="post" asp-action="OrderPickup" asp-controller="Order" asp-route-OrderId="@Model.OrderHeader.OrderHeaderId">
     <div class="container row backgroundWhiteBorder10Padding border ml-1">
         <div class="col-12 col-lg-8 border-right">
             <div class="form-group row">
@@ -109,7 +110,14 @@
                 </li>
 
             </ul>
-            <button type="submit" disabled class="btn btn-success form-control" style="color:black;background-color:aquamarine">@Model.OrderHeader.Status</button>
+            @if (Model.OrderHeader.Status == SD.StatusReady && User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.FrontDestUser))
+            {
+                <button type="submit" class="btn btn-success form-control"><i class="fas fa-thumbs-up"></i>&nbsp; Confirm Pickup</button>
+            }
+            else
+            {
+                <button type="submit" disabled class="btn btn-info form-control" style="color:black;background-color:aquamarine">@Model.OrderHeader.Status</button>
+            }
 
         </div>
     </div>
