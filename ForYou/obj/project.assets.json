@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Microsoft.AspNetCore.Authentication.Facebook/3.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Facebook.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Facebook.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.AspNetCore.Authentication.Google/3.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.1": {
         "type": "package",
         "compile": {
@@ -1210,6 +1234,18 @@
             "assetType": "native",
             "rid": "win-x86"
           }
+        }
+      },
+      "SendGrid/9.16.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {}
         }
       },
       "Stripe.net/37.6.0": {
@@ -2729,6 +2765,36 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNetCore.Authentication.Facebook/3.1.5": {
+      "sha512": "Y6amKeemC/14qRm8KFinQZIESAh1pzQ6c6eWix21E/uJjr9CYsWIIr6vibmNliVR3Hw8hjq3UBudVYrYVesZww==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.facebook/3.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Facebook.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Facebook.xml",
+        "microsoft.aspnetcore.authentication.facebook.3.1.5.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.facebook.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/3.1.5": {
+      "sha512": "5fGJ3eKAEJRqu+cUqC2tVvITrbBx8x5JJbQbpD81Ob1q/My9pDitwaaDSBSkNeQ0J4J33Mub1D+3xS9K/9cTxg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/3.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.3.1.5.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.1": {
       "sha512": "sFfUegR52PSmTcT2eH1YywPdXLwx0Tt4S54yjqIP5+R/BmZKbEfCOvaGqAwKYbpwztHTua013pPeDKP8DmuGtw==",
       "type": "package",
@@ -4621,6 +4687,26 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "SendGrid/9.16.0": {
+      "sha512": "yu/2vW/BgSM/sCvd/K3aYHPDoFGtdh5k6lXbH3ART036gA9R4/K2ogCajEMYEKi4gEXuOZxKF+j0btnRkG5xyw==",
+      "type": "package",
+      "path": "sendgrid/9.16.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/SendGrid.dll",
+        "lib/net452/SendGrid.pdb",
+        "lib/net452/SendGrid.xml",
+        "lib/netstandard1.3/SendGrid.dll",
+        "lib/netstandard1.3/SendGrid.pdb",
+        "lib/netstandard1.3/SendGrid.xml",
+        "lib/netstandard2.0/SendGrid.dll",
+        "lib/netstandard2.0/SendGrid.pdb",
+        "lib/netstandard2.0/SendGrid.xml",
+        "sendgrid.9.16.0.nupkg.sha512",
+        "sendgrid.nuspec"
       ]
     },
     "Stripe.net/37.6.0": {
@@ -8775,6 +8861,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Microsoft.AspNetCore.Authentication.Facebook >= 3.1.5",
+      "Microsoft.AspNetCore.Authentication.Google >= 3.1.5",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.1",
       "Microsoft.AspNetCore.Identity.UI >= 3.1.1",
@@ -8783,6 +8871,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.1",
       "Microsoft.Extensions.Logging.Debug >= 3.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.3",
+      "SendGrid >= 9.16.0",
       "Stripe.net >= 37.6.0"
     ]
   },
@@ -8823,6 +8912,14 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Facebook": {
+            "target": "Package",
+            "version": "[3.1.5, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[3.1.5, )"
+          },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
             "version": "[3.1.1, )"
@@ -8854,6 +8951,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.3, )"
+          },
+          "SendGrid": {
+            "target": "Package",
+            "version": "[9.16.0, )"
           },
           "Stripe.net": {
             "target": "Package",

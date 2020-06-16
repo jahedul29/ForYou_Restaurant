@@ -9,6 +9,7 @@ using ForYou.Models;
 using ForYou.Models.ViewModel;
 using ForYou.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,13 +18,15 @@ namespace ForYou.Areas.Customer.Controllers
     [Area("Customer")]
     public class OrderController : Controller
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
+        private readonly IEmailSender _emailSender;
 
         private int PageSize = 2;
 
-        public OrderController(ApplicationDbContext db)
+        public OrderController(ApplicationDbContext db, IEmailSender emailSender)
         {
             _db = db;
+            _emailSender = emailSender;
         }
         public IActionResult Index()
         {
@@ -144,6 +147,10 @@ namespace ForYou.Areas.Customer.Controllers
             await _db.SaveChangesAsync();
 
             //Email notiication for order Pickup
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.ApplicationUserId).FirstOrDefault().Email,
+                   "Your order is ready for pickup completed OrderId: " + orderHeader.OrderHeaderId.ToString(),
+                   "Your order is ready for pickup. <br /> <strong class =\"text-info\">THANK YOU!!</strong>");
+
 
             return RedirectToAction(nameof(ManageOrder));
         }
@@ -154,6 +161,9 @@ namespace ForYou.Areas.Customer.Controllers
             OrderHeader orderHeader = await _db.OrderHeaders.FindAsync(orderId);
             orderHeader.Status = SD.StatusCencelled;
             await _db.SaveChangesAsync();
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.ApplicationUserId).FirstOrDefault().Email,
+                   "Your order is ready for pickup OrderId: " + orderHeader.OrderHeaderId.ToString(),
+                   "Your order is cencelled anyway. <br /> <strong class =\"text-info\">THANK YOU!!</strong>");
 
             return RedirectToAction(nameof(ManageOrder));
         }
@@ -266,6 +276,9 @@ namespace ForYou.Areas.Customer.Controllers
             OrderHeader orderHeader = await _db.OrderHeaders.FindAsync(orderId);
             orderHeader.Status = SD.StatusCompleted;
             await _db.SaveChangesAsync();
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.ApplicationUserId).FirstOrDefault().Email,
+                   "Your order is completed OrderId: " + orderHeader.OrderHeaderId.ToString(),
+                   "Your order Completed succesfully. <br /> <strong class =\"text-info\">THANK YOU!!</strong>");
 
             return RedirectToAction(nameof(OrderPickup));
         }

@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using ForYou.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -23,17 +24,21 @@ namespace ForYou.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -51,6 +56,13 @@ namespace ForYou.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required]
+            public string Name { get; set; }
+            public string PhoneNumber { get; set; }
+            public string Adress { get; set; }
+            public string City { get; set; }
+            public string PostCode { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -101,7 +113,9 @@ namespace ForYou.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        Name = info.Principal.FindFirstValue(ClaimTypes.Name),
+                        PhoneNumber = info.Principal.FindFirstValue(ClaimTypes.MobilePhone)
                     };
                 }
                 return Page();
@@ -121,7 +135,16 @@ namespace ForYou.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    Name = Input.Name,
+                    City = Input.City,
+                    Adress = Input.Adress,
+                    PostCode = Input.PostCode,
+                    PhoneNumber = Input.PhoneNumber
+                };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -35,7 +35,7 @@ namespace ForYou
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IEmailSender, EmailSender>();
+       
 
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultTokenProviders()
@@ -44,10 +44,20 @@ namespace ForYou
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<EmailOptions>(Configuration);
+
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
-            services.AddSession(option => {
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "259942672010642";
+                facebookOptions.AppSecret = "af105ff83277985ca8604a1665a4d98d";
+            });
+
+            services.AddSession(option =>
+            {
                 option.Cookie.IsEssential = true;
                 option.IdleTimeout = TimeSpan.FromMinutes(30);
                 option.Cookie.HttpOnly = true;

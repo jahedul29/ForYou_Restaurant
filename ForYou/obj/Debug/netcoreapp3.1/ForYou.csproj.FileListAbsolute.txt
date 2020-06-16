@@ -925,11 +925,15 @@ D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Custom
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Index.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Summery.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\Stripe.net.dll
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cs
-D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\Confirm.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_IndividualOrderDetailsPartial.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\OrderHistory.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrderStatusPartial.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\ManageOrder.cshtml.g.cs
 D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\OrderPickup.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\UserName\Default.cshtml.g.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\bin\Debug\netcoreapp3.1\SendGrid.dll
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\Brugen_Patel\ForYou\ForYou\obj\Debug\netcoreapp3.1\ForYou.MvcApplicationPartsAssemblyInfo.cache

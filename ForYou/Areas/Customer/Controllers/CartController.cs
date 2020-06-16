@@ -9,6 +9,7 @@ using ForYou.Models.ViewModel;
 using ForYou.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
@@ -19,12 +20,14 @@ namespace ForYou.Areas.Customer.Controllers
     public class CartController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IEmailSender _emailSender;
         [BindProperty]
         public OrderDetailsCartViewModel DetailsCartVM { get; set; }
 
-        public CartController(ApplicationDbContext db)
+        public CartController(ApplicationDbContext db, IEmailSender emailSender)
         {
             _db = db;
+            _emailSender = emailSender;
         }
 
         [Authorize]
@@ -239,21 +242,24 @@ namespace ForYou.Areas.Customer.Controllers
 
             Charge charge = service.Create(options);
 
-            if (charge.BalanceTransactionId == null)
-            {
-                DetailsCartVM.OrderHeader.PaymentStatus = SD.StatusRejected;
-            }
-            else
-            {
-                DetailsCartVM.OrderHeader.TransactionId = charge.BalanceTransactionId;
-            }
+            
             if (charge.Status.ToLower() == "succeeded")
             {
+                DetailsCartVM.OrderHeader.TransactionId = charge.BalanceTransactionId;
+
+                await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == claim).FirstOrDefault().Email,
+                    "ForYou payment completed OrderId: " + DetailsCartVM.OrderHeader.OrderHeaderId.ToString(),
+                    "You have paid " + DetailsCartVM.OrderHeader.OrderTotal.ToString() + " for your Order<br /> <strong class =\"text-info\">THANK YOU!!</strong>");
+                 
                 DetailsCartVM.OrderHeader.PaymentStatus = SD.StatusApproved;
                 DetailsCartVM.OrderHeader.Status = SD.StatusSubmitted;
             }
             else
             {
+                await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == claim).FirstOrDefault().Email,
+                    "ForYou payment completed OrderId: " + DetailsCartVM.OrderHeader.OrderHeaderId.ToString(),
+                    "Your payment request failed anyway. Please contuct us for more information.<br /> <strong class =\"text-info\">THANK YOU!!</strong>");
+
                 DetailsCartVM.OrderHeader.PaymentStatus = SD.StatusRejected;
             }
 

@@ -98,6 +98,8 @@ namespace ForYou.Areas.Identity.Pages.Account
                     PostCode = Input.PostCode,
                     PhoneNumber = Input.PhoneNumber
                 };
+                await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
