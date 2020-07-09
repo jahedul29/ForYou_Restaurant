@@ -1,14 +1,8 @@
 # For_You_Using_dotNet_Core_3.1
 This is a restaurant website.
 Technologies used:
-  1. C#
-  2. SQL Server
-  3. asp.net MVC Core 3.1
-  4. Entity Framework
-  5. HTML
-  6. CSS
-  7. JavaScript
-  8. Bootstrap
+   C#,  SQL Server, asp.net MVC Core 3.1, Entity Framework, HTML, CSS, JavaScript, Bootstrap.
+   
 Features:
   1. 4 types of identity handled. Admin, Chef, Maintainer, Customer.
   2. Basic CRUD operation for all identities.
